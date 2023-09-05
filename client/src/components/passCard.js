@@ -32,10 +32,11 @@ export const PassCard = (props) => {
       
       <div className="card" key={pass._id}>
         <div className="opponent">{pass.Opponent}</div>
-        <div className="quantity">{pass.quantity}</div>
-        <div className="price">{pass.price}</div>
-        <div className="type">{pass.type}</div>
-        <div className="guest">{pass.guest}</div>
+        <div className="quantity">Quantity; {pass.quantity}</div>
+        <div className="price">Price: ${pass.price} each</div>
+        <div className="type">Classification: {pass.type}</div>
+        <div className="guest">{pass.guest ? 'Guest pass included ' : 'Guest pass not included '}</div>
+        <div className="phNumber">Contact: {pass.phoneNumber}</div>
       </div>
   )}
 </div>

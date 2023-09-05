@@ -8,10 +8,10 @@ const router = express.Router();
 router.post('/passes', async (req, res) => {
     try {
 
-      const { Opponent, guest, type, quantity, price } = req.body;
+      const { Opponent, guest, year, quantity, price, phoneNumber, userId } = req.body;
   
 
-      const newPass = new PassModel({ Opponent, guest, type, quantity, price });
+      const newPass = new PassModel({ Opponent, guest, year, quantity, price, phoneNumber, userId });
 
       await newPass.save();
   

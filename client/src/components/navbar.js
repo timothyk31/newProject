@@ -16,11 +16,11 @@ export const Navbar = () => {
   return (
     <div className="navbar">
       <p className="project-name">passON!</p>
-      <Link to="/home" className="nav-link">
+      <Link to="/" className="nav-link">
         Home
       </Link>
       {!cookies.access_token ? (
-        <Link to="/auth" className="nav-link form-button auth-button">
+        <Link to="/auth" className="nav-link form-button auth-button button" id="userAuth">
           Login/Register
         </Link>
       ) : (
@@ -28,7 +28,7 @@ export const Navbar = () => {
           <Link to="/new-listing" className="nav-link form-button auth-button">
             New Listing
           </Link>
-          <button onClick={logout} className="nav-link form-button auth-button" id="userAuth">
+          <button onClick={logout} className="nav-link form-button auth-button button" id="userAuth">
             Logout
           </button>
         </>

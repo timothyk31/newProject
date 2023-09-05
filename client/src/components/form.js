@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import axios from 'axios'
+import { useGetUserID } from '../hooks/useGetUserID';
 
 const PassForm = () => {
   const [formData, setFormData] = useState({
@@ -16,17 +18,29 @@ const PassForm = () => {
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     const newValue = type === 'checkbox' ? checked : value;
-
     setFormData({
-      ...formData,
-      [name]: newValue,
+        ...formData,
+        [name]: newValue,
     });
+    console.log(formData)
   };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const userID = useGetUserID();
+  const handleSubmit = async (event) => {
+    event.preventDefault();
     // You can handle form submission here, e.g., send the data to the server.
-    
+    try {
+        await axios.post(`http://localhost:${5000}/pass/passes`, {
+            Opponent: formData.opponent, 
+            year: formData.year, 
+            quantity: formData.quantity,
+            price: formData.price,
+            guest: formData.guestPass,
+            phoneNumber: formData.phoneNumber,
+            userId: userID
+        });
+    } catch (err) {
+        console.log(err);
+    }
     console.log('Form Data:', formData);
   };
 
@@ -54,15 +68,15 @@ const PassForm = () => {
         <div>
           <label htmlFor="Classification">Classification:</label>
           <select
-            id="type"
-            name="type"
-            value={formData.type}
+            id="year"
+            name="year"
+            value={formData.year}
             onChange={handleChange}
             className='dropdown-menu'
           >
             <option value="" className='dropdown-option'>Classification</option>
             {classificationOptions.map((option, index) => (
-              <option key={index} value={option} className='dropdown-option'>
+              <option key={index} value={option} className='dropdown-option' onChange={handleChange}>
                 {option}
               </option>
             ))}

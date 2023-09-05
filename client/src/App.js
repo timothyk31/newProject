@@ -10,7 +10,7 @@ function App() {
         <Router>
           <Navbar/>
           <Routes className="routes">
-            <Route path="/home" element={<Home/>} />
+            <Route path="/" element={<Home/>} />
             <Route path="/auth" element={<Auth/>} />
             <Route path="/new-listing" element={<NewListing/>} />
           </Routes>
